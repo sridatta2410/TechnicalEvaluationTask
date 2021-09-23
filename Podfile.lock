@@ -1,20 +1,42 @@
 PODS:
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - GoogleSignIn (6.0.2):
+    - AppAuth (~> 1.4)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.6.1)
   - IQKeyboardManagerSwift (6.5.6)
   - JVFloatLabeledTextField (1.2.2)
 
 DEPENDENCIES:
+  - GoogleSignIn
   - IQKeyboardManagerSwift
   - JVFloatLabeledTextField
 
 SPEC REPOS:
   trunk:
+    - AppAuth
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - JVFloatLabeledTextField
 
 SPEC CHECKSUMS:
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   JVFloatLabeledTextField: df48598472ee015701d509f43e59492a0d4ca208
 
-PODFILE CHECKSUM: 2db143f9adace9d2ab52374285aa1bda4808a287
+PODFILE CHECKSUM: 32c93a5f3d37c1212238774fc438f5e02a4c0e8d
 
 COCOAPODS: 1.10.1

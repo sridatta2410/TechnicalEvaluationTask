@@ -6,7 +6,14 @@
 //
 
 import UIKit
-import JVFloatLabeledTextField
+import GoogleSignIn
+import AuthenticationServices
+
+struct onboardingSlides {
+    var image: String
+    var title: String
+    var subtitle: String
+}
 
 class ViewController: UIViewController {
     
@@ -18,86 +25,38 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollableContentView                : UIView!
     @IBOutlet weak var scrollableContentViewHeightConstraint: NSLayoutConstraint!
     
-    //MARK: Header view
-    @IBOutlet weak var backArrowImage                   : UIImageView!
-    @IBOutlet weak var backButton                       : UIButton!
-    @IBOutlet weak var saveButton                       : UIButton!
-    @IBOutlet weak var screenTitleLabel                 : UILabel!
-    @IBOutlet weak var headerDividerView                : UIView!
+    @IBOutlet weak var screenTitleLabel                     : UILabel!
+    
+    @IBOutlet weak var loginView                            : UIView!
+    @IBOutlet weak var orView                               : UIView!
+    @IBOutlet weak var divider1View                         : UIView!
+    @IBOutlet weak var divider2View                         : UIView!
+    @IBOutlet weak var createAcountView                     : UIView!
+    @IBOutlet weak var googleLoginView                      : UIView!
+    @IBOutlet weak var appleSigninView                      : UIView!
+    @IBOutlet weak var loginLabel                           : UILabel!
+    @IBOutlet weak var orLabel                              : UILabel!
+    @IBOutlet weak var createAccountLabel                   : UILabel!
+    @IBOutlet weak var googleSigninLabel                    : UILabel!
+    @IBOutlet weak var appleSigninLabel                     : UILabel!
+    @IBOutlet weak var googleLogoImage                      : UIImageView!
+    @IBOutlet weak var applelogoImage                       : UIImageView!
+    @IBOutlet weak var loginButton                          : UIButton!
+    @IBOutlet weak var createAccountButton                  : UIButton!
+    @IBOutlet weak var googleButton                         : UIButton!
+    @IBOutlet weak var appleButton                          : UIButton!
+    
+    @IBOutlet weak var onboardingPageControl                : UIPageControl!
+    @IBOutlet weak var onboardingCollectionView             : UICollectionView!
 
-    //MARK: Meeting options view
-    @IBOutlet weak var meetingOptionsView               : UIView!
-    @IBOutlet weak var meetingTypeView                  : UIView!
-    @IBOutlet weak var privateRadioImage                : UIImageView!
-    @IBOutlet weak var privateMeetingLabel              : UILabel!
-    @IBOutlet weak var privateMeetingButton             : UIButton!
-    @IBOutlet weak var publicRadioImage                 : UIImageView!
-    @IBOutlet weak var publicConferenceLabel            : UILabel!
-    @IBOutlet weak var publicConferenceButton           : UIButton!
-    
-    //MARK: Password view
-    @IBOutlet weak var totalPasswordView                : UIView!
-    @IBOutlet weak var toggleView                       : UIView!
-    @IBOutlet weak var passwordView                     : UIView!
-    @IBOutlet weak var totalPasswordViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var requirePasswordLabel             : UILabel!
-    @IBOutlet weak var requirePasswordToggle            : UISwitch!
-    @IBOutlet weak var passwordLabel                    : UILabel!
-    @IBOutlet weak var passwordField                    : UITextField!
-    @IBOutlet weak var passwordViewHeightConstraint     : NSLayoutConstraint!
-    
-    //MARK: Meeting type view
-    @IBOutlet weak var meetingTypeAndCompanyView        : UIView!
-    @IBOutlet weak var meetingTitleView                 : UIView!
-    @IBOutlet weak var meetingLocationView              : UIView!
-    @IBOutlet weak var meetingTypeLabel                 : UILabel!
-    @IBOutlet weak var meetingTypeButton                : UIButton!
-    @IBOutlet weak var meetingTypeDropdownView          : UIView!
-    @IBOutlet weak var internalTypeButton               : UIButton!
-    @IBOutlet weak var externalTypeButton               : UIButton!
-    @IBOutlet weak var companyLabel                     : UILabel!
-    @IBOutlet weak var companySelectionButton           : UIButton!
-    
-    //MARK: Title and Location fields
-    @IBOutlet weak var titleField                       : UITextField!
-    @IBOutlet weak var titleBottonView                  : UIView!
-    @IBOutlet weak var locationField                    : UITextField!
-    @IBOutlet weak var sectionDividerViewOne            : UIView!
-    
-    //MARK: Meeting time settings
-    @IBOutlet weak var startTimeView                    : UIView!
-    @IBOutlet weak var endTimeView                      : UIView!
-    @IBOutlet weak var repeatView                       : UIView!
-    @IBOutlet weak var allDayView                       : UIView!
-    @IBOutlet weak var timeZoneView                     : UIView!
-    @IBOutlet weak var startTimeLabel                   : UILabel!
-    @IBOutlet weak var startTimeValueField              : UITextField!
-    @IBOutlet weak var startTimeButton                  : UIButton!
-    @IBOutlet weak var endTimeLabel                     : UILabel!
-    @IBOutlet weak var endTimeValueField                : UITextField!
-    @IBOutlet weak var endTimeButton                    : UIButton!
-    @IBOutlet weak var repeatLabel                      : UILabel!
-    @IBOutlet weak var repeatValueLabel                 : UILabel!
-    @IBOutlet weak var repeatButton                     : UIButton!
-    @IBOutlet weak var allDayLabel                      : UILabel!
-    @IBOutlet weak var allDayToggle                     : UISwitch!
-    @IBOutlet weak var timeZoneHeightConstraint         : NSLayoutConstraint!
-    @IBOutlet weak var timeZoneLabel                    : UILabel!
-    @IBOutlet weak var timeZoneValueLabel               : UILabel!
-    @IBOutlet weak var timeZoneButton                   : UIButton!
-    @IBOutlet weak var sectionDividerViewTwo            : UIView!
-    
     //MARK:- Variables
-    let blueColor                   = #colorLiteral(red: 0.04705882353, green: 0.4666666667, blue: 0.9215686275, alpha: 1)
-    var isMeetingTypeDropdownShown  = false
-    let date                        = Date()
-    var datePicker                  = UIDatePicker()
-    let dateFormatter               = DateFormatter()
-    var currentTextField            = UITextField()
+    let ud              = UserDefaults.standard
+    var dataArray       = [onboardingSlides]()
 
     //MARK:- Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
     }
@@ -108,355 +67,247 @@ class ViewController: UIViewController {
     
     //MARK:- Userdefined Methods
     func setupUI() {
-        setBackgroundColorForView(
-            [sectionDividerViewOne, sectionDividerViewTwo],
-            color: blueColor.withAlphaComponent(0.2)
+        
+        setViewCornerRadiusToCircle(
+            [loginView, createAcountView, googleLoginView, appleSigninView]
         )
-    
-        scrollableContentViewHeightConstraint.constant = 810
         
-        // Header view
-        backArrowImage.image        = UIImage(named: "back_arrow")
-        screenTitleLabel.text       = "New Meeting"
-        saveButton.setTitle("Save", for: .normal)
+        setBorderForView(
+            [createAcountView, googleLoginView, appleSigninView],
+            borderWidth: 0.2,
+            borderColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        )
         
-        // Meeting options
-        privateMeetingLabel.text    = "Private meeting"
-        publicConferenceLabel.text  = "Public conference"
+        loginView.backgroundColor = blueColor
+        loginLabel.textColor = .white
+        
+        orView.backgroundColor = .clear
+        setBgColorForView([divider1View, divider2View], color: homeViewBgColor)
+        setViewCustomCornerRadius([divider1View, divider2View], radius: 4.0)
+        
         if #available(iOS 13.0, *) {
-            privateRadioImage.image = UIImage(systemName: "circle.circle.fill")
-            publicRadioImage.image  = UIImage(systemName: "circle.circle")
+            appleSigninView.isHidden = false
         } else {
             // Fallback on earlier versions
+            appleSigninView.isHidden = true
         }
-        privateRadioImage.alpha                         = 1.0
-        publicRadioImage.alpha                          = 0.3
-        totalPasswordView.alpha                         = 1.0
-        totalPasswordViewHeightConstraint.constant      = 102
-        meetingTypeDropdownView.backgroundColor         = .white
-        meetingTypeDropdownView.alpha                   = 0.0
         
-        // Adding shadow to meeting type dropdown view
-        meetingTypeDropdownView.layer.cornerRadius       = 10
-        meetingTypeDropdownView.layer.shadowColor        = UIColor.black.cgColor
-        meetingTypeDropdownView.layer.shadowOpacity      = 0.1
-        meetingTypeDropdownView.layer.shadowOffset       = .zero
-        meetingTypeDropdownView.layer.shadowPath         = UIBezierPath(rect: meetingTypeDropdownView.bounds).cgPath
-        meetingTypeDropdownView.layer.shouldRasterize    = true
-        meetingTypeDropdownView.layer.rasterizationScale = UIScreen.main.scale
-        meetingTypeDropdownView.layer.shadowRadius       = 5
+        onboardingCollectionView.delegate = self
+        onboardingCollectionView.dataSource = self
         
-        // Require password
-        requirePasswordLabel.text       = "Require meeting password"
-        passwordLabel.text              = "Password"
-        passwordField.placeholder       = "Add password..."
-        passwordField.delegate          = self
-        passwordField.isSecureTextEntry = true
-        totalPasswordView.alpha         = 1.0
+        setupSlidesData()
         
-        // Meeting type
-        meetingTypeLabel.text           = "Meeting Type"
-        companyLabel.text               = "Company"
-        companySelectionButton.setTitle("Select Company", for: .normal)
-        
-        // Title and Location
-        titleField.placeholder          = "Title"
-        locationField.placeholder       = "Location"
-        titleField.delegate             = self
-        locationField.delegate          = self
-        
-        // Scheduling
-        getCurrentDateTime()
-        
-        startTimeLabel.text             = "Starts"
-        endTimeLabel.text               = "Ends"
-        repeatLabel.text                = "Repeat"
-        repeatValueLabel.text           = "Never"
-        allDayLabel.text                = "All day"
-        timeZoneLabel.text              = "Time zone"
-        timeZoneValueLabel.text         = "Kolkata"
-        
-        startTimeValueField.delegate    = self
-        endTimeValueField.delegate      = self
-        startTimeValueField.tintColor   = .clear
-        endTimeValueField.tintColor     = .clear
-        
-        allDayToggle.isOn               = false
     }
     
-    // Sets a custom background color to UIview
-    func setBackgroundColorForView(_ allViews: [UIView], color: UIColor) {
-        for view in allViews {
-            view.backgroundColor = color
-        }
-    }
-    
-    // Return current date string of format '15 Sep'
-    func getCurrentDate() -> String {
-        let now = date
-        dateFormatter.dateFormat = "dd MMM"
-        let todayDate = dateFormatter.string(from: now)
-        print("Current Date -- ",todayDate)
-        return todayDate
-    }
-    
-    // Get current date, time to autofill start and end time fields
-    func getCurrentDateTime() {
-        var nowDate = ""
-        var nowTime = ""
-        var currentDateTime = ""
+    func setupSlidesData() {
+        dataArray.removeAll()
         
-        let now = date
-        dateFormatter.dateFormat = "dd MMM"
-        nowDate = dateFormatter.string(from: now)
-        dateFormatter.timeStyle = .short
-        nowTime = dateFormatter.string(from: now)
-        print("\(nowDate)"," \(nowTime)")
-        currentDateTime = "\(nowDate), " + "\(nowTime)"
-        startTimeValueField.textAlignment = .right
-        startTimeValueField.text = currentDateTime
-        let timeAfter30Mins = date.addingTimeInterval(1800)
-        endTimeValueField.textAlignment = .right
-        endTimeValueField.text = dateFormatter.string(from: timeAfter30Mins)
-    }
-
-    //MARK: Date Picker Custom Methods
-    func openStartDatePicker() {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .dateAndTime
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .wheels
-        } else {
-            // Fallback on earlier versions
-        }
-        datePicker.addTarget(self, action: #selector(startDatePickerValueChangedHandler(datePicker:)), for: .valueChanged)
-        startTimeValueField.inputView = datePicker
-        startTimeValueField.becomeFirstResponder()
-    }
-    
-    @objc func startDatePickerValueChangedHandler(datePicker: UIDatePicker) {
-        if let datePicker = startTimeValueField.inputView as? UIDatePicker {
-           
-            var nowDate = ""
-            var nowTime = ""
-            var currentDateTime = ""
-            
-            let now = date
-            dateFormatter.dateFormat = "dd MMM"
-            nowDate = dateFormatter.string(from: datePicker.date)
-            dateFormatter.timeStyle = .short
-            nowTime = dateFormatter.string(from: datePicker.date)
-            print("\(nowDate)"," \(nowTime)")
-            currentDateTime = "\(nowDate), " + "\(nowTime)"
-            startTimeValueField.textAlignment = .right
-            startTimeValueField.text = currentDateTime
-            let timeAfter30Mins = datePicker.date.addingTimeInterval(1800)
-            endTimeValueField.textAlignment = .right
-            endTimeValueField.text = dateFormatter.string(from: timeAfter30Mins)
+        dataArray.append(onboardingSlides(image: "mainBg", title: "StayTouch", subtitle: ""))
+        dataArray.append(onboardingSlides(image: "onboarding_1", title: "Welcome to StayTouch!", subtitle: "Discover our StayTouch Share feature: Bring two phones close to each other to share your contact information securely and effortlessly."))
+        dataArray.append(onboardingSlides(image: "onboarding_2", title: "Create Multiple Profiles", subtitle: "Decide what information you share based on the context and the occasion."))
+        dataArray.append(onboardingSlides(image: "onboarding_3", title: "Automatic Updates", subtitle: "Whenever you update your contact details, we'll update everyone in your network."))
+        dataArray.append(onboardingSlides(image: "onboarding_4", title: "Remember Who's Who", subtitle: "Record details of past meetings by adding notes, pictures, and voice memos."))
+        dataArray.append(onboardingSlides(image: "onboarding_5", title: "Manage Your Meetings", subtitle: "Use the StayTouch calendar to keep your schedule tidy and organized."))
         
-            print(datePicker.date)
-        }
-        print(datePicker.date)
-    }
-    
-    func openEndDatePicker() {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .dateAndTime
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .wheels
-        } else {
-            // Fallback on earlier versions
-        }
-        datePicker.addTarget(self, action: #selector(endDatePickerValueChangedHandler(datePicker:)), for: .valueChanged)
-        endTimeValueField.inputView = datePicker
-        endTimeValueField.becomeFirstResponder()
-    }
-    
-    @objc func endDatePickerValueChangedHandler(datePicker: UIDatePicker) {
-        if let datePicker = endTimeValueField.inputView as? UIDatePicker {
-            
-            var date = ""
-            var time = ""
-            var selectedDate = ""
-            
-            let dateFormat = DateFormatter()
-            dateFormat.dateStyle = .medium
-            dateFormat.dateFormat = "dd MMM"
-            date = dateFormat.string(from: datePicker.date)
-            selectedDate = date
-            dateFormat.timeStyle = .short
-            time = dateFormat.string(from: datePicker.date)
-            let timeArr = time.components(separatedBy: "at")
-            time = timeArr[1]
-            endTimeValueField.textAlignment = .right
-            if selectedDate == getCurrentDate() {
-                print("same date")
-                endTimeValueField.text = "\(time)"
-            }
-            else {
-                print("another date")
-                endTimeValueField.text = "\(date)," + "\(time)"
-            }
-            print(datePicker.date)
-        }
-        print(datePicker.date)
+        onboardingCollectionView.showsVerticalScrollIndicator = false
+        onboardingCollectionView.showsHorizontalScrollIndicator = false
+        onboardingCollectionView.isPagingEnabled = true
+        onboardingCollectionView.reloadData()
+        
+        onboardingPageControl.numberOfPages = dataArray.count
+        onboardingPageControl.currentPage = 0
+        onboardingPageControl.isUserInteractionEnabled = false
     }
     
     //MARK:- Button Actions
-    @IBAction func meetingTypeButtonAction(_ sender: Any) {
-        currentTextField.resignFirstResponder()
-        if meetingTypeButton.titleLabel?.text == "Internal" {
-            internalTypeButton.setTitleColor(blueColor, for: .normal)
-            externalTypeButton.setTitleColor(.lightGray, for: .normal)
+    @IBAction func loginButtonAction(_ sender: Any) {
+    }
+    
+    @IBAction func createAccountButtonAction(_ sender: Any) {
+    }
+    
+    @IBAction func googleButtonAction(_ sender: Any) {
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+            guard error == nil else { return }
+                
+            guard let user = user else { return }
+
+            let emailAddress = user.profile?.email
+
+            let fullName = user.profile?.name
+            let givenName = user.profile?.givenName
+            let familyName = user.profile?.familyName
+
+            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            
+            print("\n--- Google Sign-In ---\n")
+            print("Email       = \(emailAddress!)")
+            print("Full name   = \(fullName!)")
+            print("Given name  = \(givenName!)")
+            print("Family name = \(familyName!)")
+            
+            self.ud.set(givenName, forKey: "logged_user_name")
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeView") as! HomeView
+            vc.userName = givenName!
+            vc.userEmail = emailAddress!
+            vc.isAppleLogin = false
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        else {
-            internalTypeButton.setTitleColor(.lightGray, for: .normal)
-            externalTypeButton.setTitleColor(blueColor, for: .normal)
-        }
-        if isMeetingTypeDropdownShown == false {
-            isMeetingTypeDropdownShown = true
-            UIView.animate(withDuration: 0.2){
-                self.meetingTypeDropdownView.alpha = 1.0
-            }
-        }
-        else {
-            isMeetingTypeDropdownShown = false
-            UIView.animate(withDuration: 0.2){
-                self.meetingTypeDropdownView.alpha = 0.0
-            }
-        }
     }
     
-    @IBAction func internalTypeButtonAction(_ sender: Any) {
-        meetingTypeDropdownView.alpha = 0.0
-        meetingTypeButton.setTitle("Internal", for: .normal)
-    }
-    
-    @IBAction func externalTypeButtonAction(_ sender: Any) {
-        meetingTypeDropdownView.alpha = 0.0
-        meetingTypeButton.setTitle("External", for: .normal)
-    }
-    
-    @IBAction func startTimeButtonAction(_ sender: Any) {
-        openStartDatePicker()
-    }
-    
-    @IBAction func endTimeButtonAction(_ sender: Any) {
-        openEndDatePicker()
-    }
-    
-    @IBAction func privateMeetingButtonAction(_ sender: Any) {
+    @IBAction func appleButtonAction(_ sender: Any) {
         if #available(iOS 13.0, *) {
-            privateRadioImage.image = UIImage(systemName: "circle.circle.fill")
-            publicRadioImage.image = UIImage(systemName: "circle.circle")
+            appleButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
         } else {
             // Fallback on earlier versions
         }
-        privateRadioImage.alpha = 1.0
-//        publicRadioImage.image = UIImage(systemName: "circle.circle")
-        publicRadioImage.alpha = 0.3
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut , animations: {
-            self.totalPasswordView.alpha = 1.0
-            self.totalPasswordViewHeightConstraint.constant = 102
-            self.scrollableContentViewHeightConstraint.constant += 102
-        }, completion: nil)
     }
     
-    @IBAction func publicConferenceButtonAction(_ sender: Any) {
-        if #available(iOS 13.0, *) {
-            publicRadioImage.image = UIImage(systemName: "circle.circle.fill")
-            privateRadioImage.image = UIImage(systemName: "circle.circle")
-        } else {
-            // Fallback on earlier versions
-        }
-        publicRadioImage.alpha = 1.0
-        privateRadioImage.alpha = 0.3
-        UIView.animate(withDuration: 0.0, delay: 0.0, options: .curveEaseIn , animations: {
-            self.totalPasswordView.alpha = 0.0
-            self.totalPasswordViewHeightConstraint.constant = 0
-            self.scrollableContentViewHeightConstraint.constant -= 102
-            self.totalPasswordView.alpha = 0.0
-        }, completion: nil)
-    }
-    
-    @IBAction func requirePasswordToggleAction(_ sender: UISwitch) {
-        if requirePasswordToggle.isOn {
-            print("requirePassword Toggle isOn")
-            passwordViewHeightConstraint.constant = 50
-            passwordView.alpha = 1.0
-            totalPasswordViewHeightConstraint.constant += 50
-            scrollableContentViewHeightConstraint.constant += 50
-            requirePasswordToggle.isOn = false
-            requirePasswordToggle.setOn(true, animated:true)
-        } else {
-            print("requirePassword Toggle isOn")
-            passwordViewHeightConstraint.constant = 0
-            passwordView.alpha = 0.0
-            totalPasswordViewHeightConstraint.constant -= 50
-            scrollableContentViewHeightConstraint.constant -= 50
-            requirePasswordToggle.isOn = true
-            requirePasswordToggle.setOn(false, animated:true)
-        }
-    }
-    
-    @IBAction func allDayToggleAction(_ sender: UISwitch) {
-        if allDayToggle.isOn {
-            print("allDay Toggle isOn")
-            timeZoneView.alpha = 0.0
-            timeZoneHeightConstraint.constant = 0
-            allDayToggle.isOn = true
-        } else {
-            print("allDay Toggle isOff")
-            timeZoneView.alpha = 1.0
-            timeZoneHeightConstraint.constant = 50
-            allDayToggle.isOn = false
-        }
-    }
-    
-    @IBAction func saveButtonAction(_ sender: Any) {
-        let alert = UIAlertController(title: "Saved", message: "New meeting has been created.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
-            self.setupUI()
-            self.titleField.text = ""
-            self.locationField.text = ""
-            self.passwordField.text = ""
-            self.passwordField.placeholder = "Add password..."
-            self.totalPasswordView.isHidden = false
-            self.passwordView.isHidden = false
-            self.timeZoneView.isHidden = false
-            self.timeZoneHeightConstraint.constant = 50
-        }))
-        present(alert, animated: true)
+    @IBAction func skipButtonAction(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeView") as! HomeView
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
 
 //MARK:- Extensions
 
-//MARK: TextField Delegates
-extension ViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        currentTextField = textField
-        if currentTextField == passwordField {
-            UIView.animate(withDuration: 0.2){
-                self.meetingTypeDropdownView.alpha = 0.0
+//MARK: CollectionView Delegate Methods
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dataArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            onboardingPageControl.currentPageIndicatorTintColor = .white
+            onboardingPageControl.pageIndicatorTintColor = UIColor.white.withAlphaComponent(0.5)
+            setBgColorForView([divider1View, divider2View], color: .white)
+            orLabel.textColor = .white
+        }
+        else {
+            onboardingPageControl.currentPageIndicatorTintColor = blueColor
+            onboardingPageControl.pageIndicatorTintColor = blueColor.withAlphaComponent(0.1)
+            setBgColorForView([divider1View, divider2View], color: homeViewBgColor)
+            orLabel.textColor = .black
+        }
+        onboardingPageControl.currentPage = indexPath.row
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell: SlidesCollectionCell!
+        
+        let slide = dataArray[indexPath.row]
+        
+        if indexPath.row == 0 {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "landingCell", for: indexPath) as! SlidesCollectionCell
+
+            cell.appTitle.text = slide.title
+            cell.appTitle.textAlignment = .center
+            cell.appTitle.font = UIFont(name: "Lato-Bold", size: 34.0)
+        }
+        else {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "slidesCell", for: indexPath) as! SlidesCollectionCell
+            cell.onboardingImage.image = UIImage(named: "\(slide.image)")
+            
+            cell.onboardingTitle.text = slide.title
+            cell.onboardingTitle.numberOfLines = 0
+            cell.onboardingTitle.textAlignment = .center
+            cell.onboardingTitle.font = UIFont(name: "Lato-Regular", size: 24.0)
+            
+            cell.onboardingSubtitle.text = slide.subtitle
+            cell.onboardingSubtitle.numberOfLines = 0
+            cell.onboardingSubtitle.textAlignment = .center
+            cell.onboardingSubtitle.textColor = .lightGray
+            cell.onboardingSubtitle.font = UIFont(name: "Lato-Regular", size: 14.0)
+        }
+        return cell
+        
+    }
+
+}
+
+//MARK: Apple SignIn Delegate Methods
+extension ViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizeAction(userIdentifier: String) {
+           if #available(iOS 13.0, *) {
+               let appleIDProvider = ASAuthorizationAppleIDProvider()
+               appleIDProvider.getCredentialState(forUserID: userIdentifier) {  (credentialState, error) in
+                    switch credentialState {
+                       case .authorized:
+                           // The Apple ID credential is valid.
+                        print("authorized")
+                           break
+                       case .revoked:
+                           // The Apple ID credential is revoked.
+                         print("revoked")
+                           break
+                       case .notFound:
+                           // No credential was found, so show the sign-in UI.
+                        print("not found")
+                       default:
+                           break
+                    }
+               }
+           } else {
+               // Fallback on earlier versions
+           }
+           
+       }
+    
+    @available(iOS 13.0, *)
+    @objc func handleAppleIdRequest() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+    }
+    
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let userIdentifier = appleIDCredential.user
+            let fullName = (appleIDCredential.fullName?.givenName ?? "") + " " + (appleIDCredential.fullName?.familyName ?? "")
+            let givenName = appleIDCredential.fullName?.givenName ?? ""
+            let familyName = appleIDCredential.fullName?.familyName ?? ""
+            let email = appleIDCredential.email
+            
+            if givenName != "" {
+                self.ud.set(givenName, forKey: "logged_user_name_apple")
+                self.ud.set(givenName, forKey: "logged_user_email_apple")
             }
+            
+            print("\n--- Apple Sign-In ---\n")
+            print("User Identifier  = \(userIdentifier)")
+            print("Email            = \(email)")
+            print("Full name        = \(fullName)")
+            print("Given name       = \(givenName)")
+            print("Family name      = \(familyName)")
+            
+            authorizeAction(userIdentifier: userIdentifier)
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeView") as! HomeView
+            vc.userName = givenName ?? ""
+            vc.userEmail = email ?? ""
+            vc.isAppleLogin = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        else if currentTextField == titleField {
-            UIView.animate(withDuration: 0.2){
-                self.meetingTypeDropdownView.alpha = 0.0
-            }
-        }
-        else if currentTextField == locationField {
-            UIView.animate(withDuration: 0.2){
-                self.meetingTypeDropdownView.alpha = 0.0
-            }
-        }
-        else if currentTextField == startTimeValueField {
-            self.openStartDatePicker()
-        }
-        else if currentTextField == endTimeValueField {
-            self.openEndDatePicker()
-        }
+    }
+    
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
     }
 }

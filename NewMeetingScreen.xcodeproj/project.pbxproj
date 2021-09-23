@@ -11,8 +11,17 @@
 		9F823B8926F1B2EC0018D83A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F823B8826F1B2EC0018D83A /* SceneDelegate.swift */; };
 		9F823B8B26F1B2EC0018D83A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F823B8A26F1B2EC0018D83A /* ViewController.swift */; };
 		9F823B8E26F1B2ED0018D83A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F823B8C26F1B2ED0018D83A /* Main.storyboard */; };
-		9F823B9026F1B3060018D83A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F823B8F26F1B3060018D83A /* Assets.xcassets */; };
 		9F823B9326F1B3060018D83A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F823B9126F1B3060018D83A /* LaunchScreen.storyboard */; };
+		9FB215AB26FA482E00228037 /* NewMeetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB215AA26FA482E00228037 /* NewMeetingView.swift */; };
+		9FB215AE26FA489300228037 /* MeetingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB215AD26FA489300228037 /* MeetingsListView.swift */; };
+		9FB215B126FA48A900228037 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB215B026FA48A900228037 /* HomeView.swift */; };
+		9FB215B426FA541F00228037 /* meetingDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB215B326FA541F00228037 /* meetingDataCell.swift */; };
+		9FB215B826FA599000228037 /* MeetingsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FB215B626FA599000228037 /* MeetingsDataModel.xcdatamodeld */; };
+		9FC98BFE26FAF1580059DF65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC98BFD26FAF1580059DF65 /* Constants.swift */; };
+		9FC98C2726FBF63B0059DF65 /* SlidesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC98C2626FBF63B0059DF65 /* SlidesCollectionCell.swift */; };
+		9FC98C3326FC1D330059DF65 /* MeetingsList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC98C3126FC1D330059DF65 /* MeetingsList+CoreDataClass.swift */; };
+		9FC98C3426FC1D330059DF65 /* MeetingsList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC98C3226FC1D330059DF65 /* MeetingsList+CoreDataProperties.swift */; };
+		9FC98C3726FC1DEF0059DF65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC98C3626FC1DEF0059DF65 /* Assets.xcassets */; };
 		9FEBB62126F286F800F4C58B /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F823BA726F1ED860018D83A /* Lato-Black.ttf */; };
 		9FEBB62326F286FB00F4C58B /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F823BA326F1ED860018D83A /* Lato-BlackItalic.ttf */; };
 		9FEBB62526F286FF00F4C58B /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F823BA426F1ED860018D83A /* Lato-Bold.ttf */; };
@@ -34,7 +43,6 @@
 		9F823B8826F1B2EC0018D83A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F823B8A26F1B2EC0018D83A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9F823B8D26F1B2ED0018D83A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9F823B8F26F1B3060018D83A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F823B9226F1B3060018D83A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F823B9426F1B3060018D83A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F823B9F26F1ED840018D83A /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
@@ -47,6 +55,17 @@
 		9F823BA626F1ED860018D83A /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		9F823BA726F1ED860018D83A /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		9F823BA826F1ED860018D83A /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
+		9FB215AA26FA482E00228037 /* NewMeetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingView.swift; sourceTree = "<group>"; };
+		9FB215AD26FA489300228037 /* MeetingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingsListView.swift; sourceTree = "<group>"; };
+		9FB215B026FA48A900228037 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9FB215B326FA541F00228037 /* meetingDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meetingDataCell.swift; sourceTree = "<group>"; };
+		9FB215B726FA599000228037 /* MeetingsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeetingsDataModel.xcdatamodel; sourceTree = "<group>"; };
+		9FC98BFD26FAF1580059DF65 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9FC98C2426FBD8CE0059DF65 /* NewMeetingScreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NewMeetingScreen.entitlements; sourceTree = "<group>"; };
+		9FC98C2626FBF63B0059DF65 /* SlidesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SlidesCollectionCell.swift; path = Cells/SlidesCollectionCell.swift; sourceTree = "<group>"; };
+		9FC98C3126FC1D330059DF65 /* MeetingsList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeetingsList+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9FC98C3226FC1D330059DF65 /* MeetingsList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeetingsList+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9FC98C3626FC1DEF0059DF65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3C77D66C5776029E1655A1F /* Pods-NewMeetingScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewMeetingScreen.debug.xcconfig"; path = "Target Support Files/Pods-NewMeetingScreen/Pods-NewMeetingScreen.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,12 +119,22 @@
 		9F823B8526F1B2EC0018D83A /* NewMeetingScreen */ = {
 			isa = PBXGroup;
 			children = (
+				9FC98C3126FC1D330059DF65 /* MeetingsList+CoreDataClass.swift */,
+				9FC98C3226FC1D330059DF65 /* MeetingsList+CoreDataProperties.swift */,
+				9FC98C2626FBF63B0059DF65 /* SlidesCollectionCell.swift */,
+				9FC98C2426FBD8CE0059DF65 /* NewMeetingScreen.entitlements */,
+				9FB215B626FA599000228037 /* MeetingsDataModel.xcdatamodeld */,
+				9FC98C3626FC1DEF0059DF65 /* Assets.xcassets */,
 				9F823B9E26F1ED6E0018D83A /* Fonts */,
 				9F823B8626F1B2EC0018D83A /* AppDelegate.swift */,
 				9F823B8826F1B2EC0018D83A /* SceneDelegate.swift */,
 				9F823B8A26F1B2EC0018D83A /* ViewController.swift */,
+				9FB215AA26FA482E00228037 /* NewMeetingView.swift */,
+				9FB215AD26FA489300228037 /* MeetingsListView.swift */,
+				9FB215B326FA541F00228037 /* meetingDataCell.swift */,
+				9FB215B026FA48A900228037 /* HomeView.swift */,
 				9F823B8C26F1B2ED0018D83A /* Main.storyboard */,
-				9F823B8F26F1B3060018D83A /* Assets.xcassets */,
+				9FC98BFD26FAF1580059DF65 /* Constants.swift */,
 				9F823B9126F1B3060018D83A /* LaunchScreen.storyboard */,
 				9F823B9426F1B3060018D83A /* Info.plist */,
 			);
@@ -194,8 +223,8 @@
 				9FEBB62526F286FF00F4C58B /* Lato-Bold.ttf in Resources */,
 				9F823B9326F1B3060018D83A /* LaunchScreen.storyboard in Resources */,
 				9FEBB62B26F2870C00F4C58B /* Lato-Light.ttf in Resources */,
+				9FC98C3726FC1DEF0059DF65 /* Assets.xcassets in Resources */,
 				9FEBB62326F286FB00F4C58B /* Lato-BlackItalic.ttf in Resources */,
-				9F823B9026F1B3060018D83A /* Assets.xcassets in Resources */,
 				9FEBB62726F2870600F4C58B /* Lato-BoldItalic.ttf in Resources */,
 				9FEBB62926F2870800F4C58B /* Lato-Italic.ttf in Resources */,
 				9F823B8E26F1B2ED0018D83A /* Main.storyboard in Resources */,
@@ -254,8 +283,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F823B8B26F1B2EC0018D83A /* ViewController.swift in Sources */,
+				9FC98C2726FBF63B0059DF65 /* SlidesCollectionCell.swift in Sources */,
+				9FC98BFE26FAF1580059DF65 /* Constants.swift in Sources */,
+				9FB215AB26FA482E00228037 /* NewMeetingView.swift in Sources */,
+				9FC98C3326FC1D330059DF65 /* MeetingsList+CoreDataClass.swift in Sources */,
+				9FB215AE26FA489300228037 /* MeetingsListView.swift in Sources */,
+				9FB215B126FA48A900228037 /* HomeView.swift in Sources */,
+				9FB215B426FA541F00228037 /* meetingDataCell.swift in Sources */,
+				9FB215B826FA599000228037 /* MeetingsDataModel.xcdatamodeld in Sources */,
 				9F823B8726F1B2EC0018D83A /* AppDelegate.swift in Sources */,
 				9F823B8926F1B2EC0018D83A /* SceneDelegate.swift in Sources */,
+				9FC98C3426FC1D330059DF65 /* MeetingsList+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,10 +441,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NewMeetingScreen/NewMeetingScreen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48NJV8578;
 				INFOPLIST_FILE = NewMeetingScreen/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,10 +463,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NewMeetingScreen/NewMeetingScreen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B48NJV8578;
 				INFOPLIST_FILE = NewMeetingScreen/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +501,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9FB215B626FA599000228037 /* MeetingsDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9FB215B726FA599000228037 /* MeetingsDataModel.xcdatamodel */,
+			);
+			currentVersion = 9FB215B726FA599000228037 /* MeetingsDataModel.xcdatamodel */;
+			name = MeetingsDataModel.xcdatamodeld;
+			path = ../MeetingsDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9F823B7B26F1B2EC0018D83A /* Project object */;
 }
